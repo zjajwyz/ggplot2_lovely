@@ -1,0 +1,19 @@
+## To make your ggplot more chic! Windows10 PC.
+library(extrafont)
+font_import()
+loadfonts(device = "win")
+font_list <- windowsFonts()
+
+library(ggplot2)
+# Basic scatter plot
+p <- ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point()
+p
+
+p + theme_classic() + scale_color_brewer(palette = "Set1")+
+   scale_x_continuous(sec.axis = sec_axis(~.))+
+   scale_y_continuous(sec.axis = sec_axis(~.))+
+   coord_cartesian(xlim=c(1, 6), ylim = c(10,35), expand = FALSE)+
+   theme(text=element_text(size=11,  family="Palatino Linotype", colour = "black"), 
+   axis.text.x = element_text(color="black"), axis.text.y = element_text(color="black"))
+   
+p
